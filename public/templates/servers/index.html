@@ -1,11 +1,5 @@
 <h3>Servers list</h3>
 <div>
-    <div class="panel-custom" ng-show="servers.length == 0">
-        <h3 class="subheader">Not found data</h2>
-    </div>
-
-    {{ servers }}
-
     <div class="form-group">
         <input type="text" ng-model="search" ng-show="servers.length > 0" class="form-control" />
     </div>
@@ -19,21 +13,15 @@
                 <th>
                     Website
                 </th>
-                <th>
-                    Age
-                </th>
-                <th>
-                    Profession
-                </th>
                 <th></th>
             </thead>
             <tbody>
-                <tr ng-repeat="(id, user) in servers | filter: search">
+                <tr ng-repeat="(id, server) in servers | filter:search">
                     <td>
-                        {{ user.name}}
+                        {{ server.name}}
                     </td>
                     <td>
-                        {{ user.url }}
+                        {{ server.website }}
                     </td>
                     <td>
                         <a href="#/servers/{{id}}">Show</a>
@@ -43,5 +31,8 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="panel-custom" ng-show="servers.length == 0">
+        <i>Not found data</i>
     </div>
 </div>

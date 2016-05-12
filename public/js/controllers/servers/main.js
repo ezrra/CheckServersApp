@@ -1,8 +1,11 @@
 angular.module('App')
     .controller('MainCtrl', ['$scope', 'Server', function ($scope, Server) {
     
-        $scope.servers = Server.all();
-
-        console.log($scope.servers)
+        Server.all().
+            then(function (response) {
+                $scope.servers = response.data;
+            }).catch(function () {
+                
+            });
 
     }])

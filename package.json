@@ -1,9 +1,12 @@
 {
-    "name": "check-servers-app",
-    "version": "0.0.1",
-    "main": "server.js",
-    "dependencies": {
-        "express": "~4.8.0",
-        "mongoose": "latest"
-    }
+  "name": "check-servers-app",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.4.3",
+    "ejs": "^2.4.1",
+    "express": "~4.13.4",
+    "method-override": "^2.1.3",
+    "mongoose": "latest"
+  }
 }

@@ -1,33 +1,33 @@
 var express     = require('express'),
     app         = express(),
-    mongoose    = require('mongoose');
+    mongoose    = require('mongoose'),
+    path        = require('path'),
+    bodyParser  = require('body-parser');
+    router      = express.Router(),
+    methodOverride = require('method-override');
 
 // Connect Mongo
-
 mongoose.connect("mongodb://localhost:27017/check-servers-app");
 
-// Location files static
-app.use(express.static(__dirname + 'public'));
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
-// Models
-var Server = mongoose.model('Server', {
-    name: String
-});
+// configure app
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(methodOverride('X-HTTP-Method-Override'));
 
-// endpoints
-app.get('/api/servers', function (req, res) {
-    Server.find(function (err, servers) {
-        if (err) {
-            res.send(err);
-        }
-        res.json(servers);
-    })
-});
+require('./app/routes/index.js')(app);
+require('./app/routes/servers.js')(app);
 
-// 
-
-app.get('*', function (req, res) {
-    res.sendFile('./public/index.html');
+app.use(function (req, res, next) {
+    var err = new Error("Not found" + req);
+    err.status = 404;
+    next(err);
 });
 
 app.listen(8080, function () {
