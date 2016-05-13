@@ -39,4 +39,18 @@ module.exports = function (app) {
             }
         });
     });
+
+    app.get('/api/servers/:id', function (req, res) {
+
+        Server.findById({ _id: req.params.id}, function (err, data) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(data);
+        });
+    });
+
+    app.get('*', function (req, res) {
+        res.sendFile(__dirname + '/public/index.html');
+    });
 }

@@ -1,8 +1,5 @@
 angular.module('App')
     .factory('Server', ['$http', '$q', function ($http, $q) {
-        
-        var defered = $q.defer();
-        var promise =  defered.promise;
 
         return {
             all: function ()
@@ -20,6 +17,14 @@ angular.module('App')
 
                     }).error(function (data) {
                         // console.log('Error: ' + data);
+                    });
+            },
+            get: function (id) {
+                // promise
+                return $http
+                    .get('/api/servers/' + id)
+                    .error(function (data) {
+
                     });
             }
         };

@@ -8,17 +8,13 @@ angular.module('App', ['ngRoute'])
             templateUrl : "/templates/servers/create.html",
             controller : "CreateCtrl"
         })
-        // .when('/users/:id', {
-        //     templateUrl : "templates/show.html",
-        //     controller : "ShowCtrl"
-        // })
-        // .when("/users/:id/edit", {
-        //     templateUrl : "templates/edit.html",
-        //     controller : "EditCtrl"
-        // })
-        // .when("/users/:id/destroy", {
-        //     templateUrl : "templates/destroy.html",
-        //     controller : "DestroyCtrl"
-        // })
+        .when("/servers/:id/edit", {
+            templateUrl : "templates/servers/edit.html",
+            controller : "EditCtrl"
+        })
+        .when("/servers/:id/destroy", {
+            templateUrl : "templates/servers/destroy.html",
+            controller : "DestroyCtrl"
+        })
         .otherwise({ redirectTo : "/"});
     })
