@@ -26,6 +26,15 @@ angular.module('App')
                     .error(function (data) {
 
                     });
+            },
+            update: function (id, server) {
+
+                $http.put('/api/servers/' + id, server)
+                    .success(function () {
+                        console.log('success')
+                    }).error(function (response) {
+                        console.log(response)
+                    });
             }
         };
 

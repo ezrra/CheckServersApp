@@ -50,6 +50,27 @@ module.exports = function (app) {
         });
     });
 
+    app.put('/api/servers/:id', function (req, res) {
+        
+        var name = req.body.name;
+        var website = req.body.website;
+
+        Server.findById({ _id: req.params.id }, function (err, server) {
+            if (err) {
+                return res.send(err);
+            };
+            server.update({
+                name: name,
+                website: website
+            }, function (err) {
+
+            });
+
+        });
+
+    });
+
+
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html');
     });

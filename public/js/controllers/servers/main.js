@@ -4,6 +4,7 @@ angular.module('App')
         Server.all().
             then(function (response) {
                 $scope.servers = response.data;
+                console.log($scope.servers)
             }).catch(function (err) {
                 console.log(err);
             });
