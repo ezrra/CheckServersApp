@@ -7,28 +7,25 @@ angular.module('App')
             .then(function (response)
             {
                 $scope.server = response.data;
-                //console.log(server)
             }).catch(function () {
 
             });
         
         $scope.update = function (server) {
-            console.log(server)
-            // Server.update();
-            // Server.update(id, server);
+            
+            Server.update(server)
+                .then(function (response)
+                {
+                    
+                    if (response.status == 200) {
+                        alert('Updated')
+                    }
 
-            // .then(function (response)
-            // {
-            //     console.log(response);
-            // }).catch(function () {
+                    console.log(response)
 
-            // });
+                }).catch(function () {
 
-            // $location.url("/servers");
+            });
         }
-
-        
-
-            // console.log($scope.server)
 
     }])

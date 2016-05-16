@@ -59,14 +59,32 @@ module.exports = function (app) {
             if (err) {
                 return res.send(err);
             };
+
             server.update({
                 name: name,
                 website: website
             }, function (err) {
 
+                if (err) {
+                    res.send(err);
+                }
+                res.json({ message: 'Updated' });
             });
-
+            
         });
+    });
+
+    app.delete('/api/servers/:id', function (req, res) {
+
+        Server.findOneAndRemove({ _id: req.params.id }, function (err, server) {
+
+            if (err) {
+                res.send(err);
+            }
+
+            res.json({ message: 'Deleted' });
+
+        })
 
     });
 

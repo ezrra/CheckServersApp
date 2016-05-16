@@ -27,14 +27,19 @@ angular.module('App')
 
                     });
             },
-            update: function (id, server) {
+            update: function (server) {
 
-                $http.put('/api/servers/' + id, server)
+                return $http.put('/api/servers/' + server._id, server);
+                /*
                     .success(function () {
                         console.log('success')
                     }).error(function (response) {
                         console.log(response)
-                    });
+                    }); */
+            },
+            destroy: function (server) {
+
+                return $http.delete('/api/servers/' + server._id);
             }
         };
 

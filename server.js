@@ -1,10 +1,10 @@
-var express     = require('express'),
-    app         = express(),
-    mongoose    = require('mongoose'),
-    path        = require('path'),
-    bodyParser  = require('body-parser');
-    router      = express.Router(),
-    methodOverride = require('method-override');
+var express         = require('express'),
+    app             = express(),
+    mongoose        = require('mongoose'),
+    path            = require('path'),
+    bodyParser      = require('body-parser');
+    router          = express.Router(),
+    methodOverride  = require('method-override');
 
 // Connect Mongo
 mongoose.connect("mongodb://localhost:27017/check-servers-app");
@@ -31,5 +31,5 @@ app.use(function (req, res, next) {
 });
 
 app.listen(8080, function () {
-    console.log('App listening ...')
+    console.log('App running')
 })
