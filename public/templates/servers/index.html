@@ -3,11 +3,14 @@
     <div class="form-group">
         <input type="text" ng-model="search" ng-show="servers.length > 0" class="form-control" />
     </div>
-
+    <div class="form-group">
+        <a class="btn btn-success" ng-click="checkServers()">Check servers</a>
+    </div>
     <div class="table-reponse">
         <table class="table table-bordered">
             <thead>
-                <th>
+                <th width="10px"><input ng-change="checkAll()" ng-model="checkedAll" type="checkbox"></input></th>
+                <th class="col-md-1">
                     Name
                 </th>
                 <th>
@@ -17,11 +20,16 @@
             </thead>
             <tbody>
                 <tr ng-repeat="(id, server) in servers | filter:search">
+                    <td align="center">
+                        <input type="checkbox" ng-model="server.selected" ng-change="changeCheckAll()"></input>
+                    </td>
                     <td>
                         {{ server.name}}
                     </td>
                     <td>
-                        {{ server.website }}
+                        <a href="{{ server.website }}" target="_blank">
+                            {{ server.website }}
+                        </a>
                     </td>
                     <td>
                         <a href="#/servers/{{ server._id }}/edit" class="btn btn-primary btn-sm">Edit</a>

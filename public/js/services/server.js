@@ -4,42 +4,46 @@ angular.module('App')
         return {
             all: function ()
             {   
-                // promise
-                return $http
-                        .get("/api/servers")
-                        .error(function (data) {
-                            
-                        });
+                var def = $q.defer();
+                $http.get("/api/servers")
+                    .success(function(data) {
+                        def.resolve(data);
+                    })
+                    .error(function (data) {
+                        def.reject("Failed to get albums");
+                    });
+                return def.promise;
             },
             store: function (data) {
                 $http.post('/api/servers', data)
                     .success(function () {
-
                     }).error(function (data) {
-                        // console.log('Error: ' + data);
                     });
             },
             get: function (id) {
                 // promise
                 return $http
                     .get('/api/servers/' + id)
-                    .error(function (data) {
-
+                    .success(function () {
+                    }).error(function (data) {
                     });
             },
             update: function (server) {
-
                 return $http.put('/api/servers/' + server._id, server);
-                /*
-                    .success(function () {
-                        console.log('success')
-                    }).error(function (response) {
-                        console.log(response)
-                    }); */
             },
             destroy: function (server) {
-
                 return $http.delete('/api/servers/' + server._id);
+            },
+            check: function (url) {
+                return $http({
+                            method: 'JSONP',
+                            url: url
+                        }).success(function(data, status, headers, config){
+                            console.log(status);
+                        })
+                        .error(function(data, status, headers, config) {
+                            console.log(data)
+                        });
             }
         };
 
