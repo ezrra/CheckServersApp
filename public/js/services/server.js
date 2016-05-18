@@ -34,16 +34,13 @@ angular.module('App')
             destroy: function (server) {
                 return $http.delete('/api/servers/' + server._id);
             },
-            check: function (url) {
-                return $http({
-                            method: 'JSONP',
-                            url: url
-                        }).success(function(data, status, headers, config){
-                            console.log(status);
-                        })
-                        .error(function(data, status, headers, config) {
-                            console.log(data)
-                        });
+            check: function (id) {
+                return $http.get("/api/servers/" + id + '/check')
+                                .success(function(data, status, headers, config) {
+                            })
+                            .error(function(data, status, headers, config) {
+                                console.log(data)
+                            });
             }
         };
 

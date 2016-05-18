@@ -10,13 +10,13 @@
         <table class="table table-bordered">
             <thead>
                 <th width="10px"><input ng-change="checkAll()" ng-model="checkedAll" type="checkbox"></input></th>
-                <th class="col-md-1">
+                <th class="col-md-3">
                     Name
                 </th>
                 <th>
                     Website
                 </th>
-                <th></th>
+                <th class="col-md-2"></th>
             </thead>
             <tbody>
                 <tr ng-repeat="(id, server) in servers | filter:search">
@@ -24,14 +24,17 @@
                         <input type="checkbox" ng-model="server.selected" ng-change="changeCheckAll()"></input>
                     </td>
                     <td>
+                        <i ng-show="server.loading" class="fa fa-spinner" aria-hidden="true"></i>
                         {{ server.name}}
+                        <status-directive status="server.status"></status-directive>
+                        <!-- <div ng-bind="server.status"></div> -->
                     </td>
                     <td>
                         <a href="{{ server.website }}" target="_blank">
                             {{ server.website }}
                         </a>
                     </td>
-                    <td>
+                    <td align="center">
                         <a href="#/servers/{{ server._id }}/edit" class="btn btn-primary btn-sm">Edit</a>
                         <a href="#/servers/{{ server._id }}/destroy" class="btn btn-danger btn-sm">Delete</a>
                     </td>
