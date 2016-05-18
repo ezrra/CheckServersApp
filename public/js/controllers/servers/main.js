@@ -24,21 +24,17 @@ angular.module('App')
             $scope.checkedAll = true;
         }
 
-        $scope.checkServers = function () {
-
-            angular.forEach($scope.servers, function (value, key) {
-                
-                if (value.selected) {
+        $scope.checkServers = function ()
+        {
+            angular.forEach($scope.servers, function (value, key)
+            {
+                if (value.selected)
+                {
                     value.loading = true;
-
+                    
                     Server.check(value._id)
                     .success(function (response) {
-                        
                         value.status = response.status;
-                        
-                        value.statusClass = 'label';
-
-                        console.log(value)
                     })
                     .then(function (response) {
                         
@@ -47,6 +43,7 @@ angular.module('App')
                     }).finally(function () {
                         value.loading = false;
                     });
+
                 } else {
                     value.loading = false;
                 }

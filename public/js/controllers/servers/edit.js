@@ -2,7 +2,7 @@ angular.module('App')
     .controller('EditCtrl', ['$scope', 'Server', '$location', '$routeParams', function ($scope, Server, $location, $routeParams) {
         
         var id = $routeParams.id;
-        // var server;
+        
         Server.get(id)
             .then(function (response)
             {
@@ -16,12 +16,7 @@ angular.module('App')
             Server.update(server)
                 .then(function (response)
                 {
-                    
-                    if (response.status == 200) {
-                        alert('Updated')
-                    }
-
-                    console.log(response)
+                    if (response.status == 200) alert('Server was updated');
 
                 }).catch(function () {
 

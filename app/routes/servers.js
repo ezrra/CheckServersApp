@@ -26,7 +26,7 @@ module.exports = function (app) {
         Server.findById({ _id: id }, function (err, server) {
             if (err) res.send(err);
             request(server.website, function (error, response, body) {
-                res.json({ status: response.statusCode });
+                // res.json({ status: response.statusCode });
             });
         });
     });

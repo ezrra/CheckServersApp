@@ -7,9 +7,42 @@ angular.module('App')
             scope: {
                 status: '='
             },
-            template: '<label ng-bind="status" ng-model="status" ng-class="{label: status == 200}"></label>',
+            templateUrl: '/templates/servers/_status.html',
             link: function(scope, element, attributes) {
-                // console.log(scope)
+                scope.$watch('status', function(newValue, oldValue) {
+                    
+                    // if (newValue == undefined) return;
+                    if (newValue == oldValue) return;
+
+                    element.attr('class', '');
+
+                    element.addClass('label');
+
+                    if (newValue >= 100 & newValue <= 200) {
+                        element.addClass('label-primary')
+                    }
+
+                    if (newValue >= 200 & newValue <= 300) {
+                        element.addClass('label-success')
+                    }
+                    
+                    if (newValue >= 300 & newValue <= 400) {
+                        element.addClass('label-default')
+                    }
+
+                    if (newValue >= 400 & newValue <= 500) {
+                        element.addClass('label-warning')
+                    }
+
+                    if (newValue >= 400 & newValue <= 500) {
+                        element.addClass('label-danger')
+                    }
+
+                }, true);
+
+            },
+            controller: function ($scope) {
+                // some
             }
         }
     });
